@@ -15,6 +15,7 @@ public class UserRequestDto {
     private String email;
     @NotBlank(message = "비밀번호를 입력해주세요.")
     private String password;
+    private String nickName;
     private Tech interest;
 
     public UserRequestDto toDto(User user) {
@@ -22,6 +23,7 @@ public class UserRequestDto {
                 user.getId(),
                 user.getEmail(),
                 user.getPassword(),
+                user.getNickname(),
                 user.getInterest());
     }
 }

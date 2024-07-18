@@ -12,6 +12,7 @@ public class UserResponseDto {
     private Long id;
     private String email;
     private String password;
+    private String nickName;
     private Tech interest;
 
     public UserResponseDto toDto(User user) {
@@ -19,6 +20,7 @@ public class UserResponseDto {
                 user.getId(),
                 user.getEmail(),
                 user.getPassword(),
+                user.getNickname(),
                 user.getInterest());
     }
 }
