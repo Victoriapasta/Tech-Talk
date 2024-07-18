@@ -4,7 +4,12 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
+import toyproject.techtalk.domain.board.Board;
+import toyproject.techtalk.domain.comment.Comment;
 import toyproject.techtalk.domain.tech.Tech;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Entity
@@ -27,4 +32,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Tech interest;
 
+    @OneToMany(mappedBy = "user")
+    private List<Board> boards = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Comment> comments = new ArrayList<>();
 }
