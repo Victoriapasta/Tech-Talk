@@ -26,6 +26,7 @@ public class Comment {
     @JoinColumn(name = "USER_ID")
     private User user;
 
+    @Column(nullable = false)
     private String content;
 
     private LocalDateTime createdTime;
