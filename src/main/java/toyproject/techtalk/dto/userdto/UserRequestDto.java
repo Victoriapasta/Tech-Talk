@@ -1,5 +1,6 @@
 package toyproject.techtalk.dto.userdto;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +12,7 @@ import toyproject.techtalk.domain.user.User;
 public class UserRequestDto {
 
     private Long id;
-    @NotBlank(message = "이메일 주소를 입력해주세요.")
+    @Email(message = "이메일 형식을 맞춰주세요.")
     private String email;
     @NotBlank(message = "비밀번호를 입력해주세요.")
     private String password;

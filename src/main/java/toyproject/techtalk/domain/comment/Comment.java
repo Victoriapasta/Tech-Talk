@@ -1,6 +1,8 @@
 package toyproject.techtalk.domain.comment;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import toyproject.techtalk.domain.board.Board;
@@ -10,7 +12,9 @@ import java.time.LocalDateTime;
 
 @Getter
 @Entity
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 public class Comment {
 
     @Id
