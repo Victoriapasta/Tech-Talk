@@ -12,10 +12,17 @@ import toyproject.techtalk.repository.UserRepository;
 @RequiredArgsConstructor
 public class SignService {
 
-    private final UserRepository repository;
+    private final UserRepository userRepository;
 
     @Transactional
     public void signUp(UserRequestDto userRequestDto) {
+        User user = User.builder()
+                .email(userRequestDto.getEmail())
+                .password(userRequestDto.getPassword())
+                .nickname(userRequestDto.getNickName())
+                .interest(userRequestDto.getInterest())
+                .build();
 
+        userRepository.save(user);
     }
 }
