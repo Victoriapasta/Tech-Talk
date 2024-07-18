@@ -22,7 +22,6 @@ public class SignService {
                 .nickname(userRequestDto.getNickName())
                 .interest(userRequestDto.getInterest())
                 .build();
-
         userRepository.save(user);
     }
 }
