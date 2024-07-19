@@ -12,12 +12,12 @@ import java.util.List;
 public class PagedBoardDto {
 
     private Integer totalPages;
-    private List<Board> boardList;
+    private List<BoardResponseDto> boardList;
 
     public static PagedBoardDto toDto(Page<Board> page) {
         return new PagedBoardDto(
                 page.getTotalPages(),
-                page.getContent()
+                BoardResponseDto.toListDto(page.getContent())
         );
     }
 }

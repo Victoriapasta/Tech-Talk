@@ -26,7 +26,7 @@ public class BoardController {
     }
 
     @GetMapping
-    public ResponseEntity<PagedBoardDto> getAllBoard(@RequestParam(value = "page", defaultValue = "0") int page) {
+    public ResponseEntity<PagedBoardDto> getAllBoards(@RequestParam(value = "page", defaultValue = "0") int page) {
         PagedBoardDto pagedBoardDto = boardService.getAllBoards(page);
         return new ResponseEntity<>(pagedBoardDto, HttpStatus.OK);
     }
