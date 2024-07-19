@@ -23,6 +23,6 @@ public class SignController {
     @PostMapping
     public ResponseEntity signUp(@Valid @RequestBody UserRequestDto userRequestDto) {
         signService.signUp(userRequestDto);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.OK);
     }
 }

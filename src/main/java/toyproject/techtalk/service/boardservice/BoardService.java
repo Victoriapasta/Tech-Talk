@@ -1,11 +1,16 @@
 package toyproject.techtalk.service.boardservice;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import toyproject.techtalk.domain.board.Board;
 import toyproject.techtalk.domain.user.User;
 import toyproject.techtalk.dto.boarddto.BoardRequestDto;
+import toyproject.techtalk.dto.boarddto.BoardResponseDto;
+import toyproject.techtalk.dto.boarddto.PagedBoardDto;
 import toyproject.techtalk.repository.BoardRepository;
 import toyproject.techtalk.repository.UserRepository;
 import toyproject.techtalk.utils.exception.user.UserNotFoundException;
@@ -28,5 +33,11 @@ public class BoardService {
                 .build();
 
         boardRepository.save(board);
+    }
+
+    public PagedBoardDto getAllBoards(int page) {
+        Pageable pageable = PageRequest.of(page, 10);
+        PagedBoardDto pagedBoardDto = PagedBoardDto.toDto(boardRepository.findAll(pageable));
+        return pagedBoardDto;
     }
 }
