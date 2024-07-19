@@ -16,7 +16,7 @@ public class CommentController {
     private final CommentService commentService;
 
     @GetMapping
-    public ResponseEntity getAllComments(@RequestParam(value = "boardId") @PathVariable Long boardId) {
+    public ResponseEntity getAllCommentsByBoardId(@RequestParam(value = "boardId") @PathVariable Long boardId) {
         return new ResponseEntity(commentService.getAllComments(boardId), HttpStatus.OK);
     }
 }

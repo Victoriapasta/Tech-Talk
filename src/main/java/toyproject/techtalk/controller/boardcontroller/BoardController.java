@@ -31,4 +31,8 @@ public class BoardController {
         return new ResponseEntity<>(pagedBoardDto, HttpStatus.OK);
     }
 
+    @DeleteMapping
+    public void deleteBoard(@PathVariable Long id) {
+        boardService.deleteBoard(id);
+    }
 }
