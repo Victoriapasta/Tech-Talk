@@ -31,6 +31,10 @@ public class BoardController {
         return new ResponseEntity<>(pagedBoardDto, HttpStatus.OK);
     }
 
+    @PatchMapping
+    public ResponseEntity updateBoard(@PathVariable Long id, @Valid @ModelAttribute BoardRequestDto boardRequestDto) {
+        return new ResponseEntity(boardService.updateBoard(id, boardRequestDto), HttpStatus.OK);
+    }
     @DeleteMapping
     public void deleteBoard(@PathVariable Long id) {
         boardService.deleteBoard(id);

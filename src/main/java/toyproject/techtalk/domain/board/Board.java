@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import toyproject.techtalk.domain.user.User;
+import toyproject.techtalk.dto.boarddto.BoardRequestDto;
 
 import java.time.LocalDateTime;
 
@@ -35,4 +36,9 @@ public class Board {
     private User user;
 
     private LocalDateTime createdTime;
+
+    public void updateBoard(BoardRequestDto boardRequestDto) {
+        this.title = boardRequestDto.getTitle();
+        this.content = boardRequestDto.getContent();
+    }
 }

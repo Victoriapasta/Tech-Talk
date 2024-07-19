@@ -16,9 +16,11 @@ public class CommentController {
     public ResponseEntity getAllCommentsByBoardId(@RequestParam(value = "boardId") @PathVariable Long boardId) {
         return new ResponseEntity(commentService.getAllComments(boardId), HttpStatus.OK);
     }
-
+    
     @DeleteMapping
     public void deleteComment(@PathVariable Long id) {
         commentService.deleteComment(id);
     }
+
+    //TODO : 댓글 작성 코드 만들기
 }

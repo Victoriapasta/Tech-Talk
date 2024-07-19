@@ -36,10 +36,17 @@ public class BoardService {
         boardRepository.save(board);
     }
 
-    public PagedBoardDto getAllBoards(int page) {
+    public PagedBoardDto getAllBoards(Integer page) {
         Pageable pageable = PageRequest.of(page, 10);
         PagedBoardDto pagedBoardDto = PagedBoardDto.toDto(boardRepository.findAll(pageable));
         return pagedBoardDto;
+    }
+
+    public BoardResponseDto updateBoard(Long id, BoardRequestDto boardRequestDto) {
+        Board board = boardRepository.findById(id)
+                .orElseThrow(BoardNotFoundException::new);
+        board.updateBoard(boardRequestDto);
+        return BoardResponseDto.toDto(board);
     }
 
     public void deleteBoard(Long id) {
