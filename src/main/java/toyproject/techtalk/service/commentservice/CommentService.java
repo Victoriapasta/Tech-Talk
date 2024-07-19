@@ -8,6 +8,7 @@ import toyproject.techtalk.dto.commentdto.CommentResponseDto;
 import toyproject.techtalk.repository.BoardRepository;
 import toyproject.techtalk.repository.CommentRepository;
 import toyproject.techtalk.repository.UserRepository;
+import toyproject.techtalk.utils.exception.comment.CommentNotFoundException;
 
 import java.util.List;
 
@@ -23,5 +24,10 @@ public class CommentService {
     public List<CommentResponseDto> getAllComments(Long boardId) {
         List<Comment> commentList = commentRepository.findAllByBoardId(boardId);
         return CommentResponseDto.toListDto(commentList);
+    }
+
+    public void deleteComment(Long id) {
+        Comment comment = commentRepository.findById(id).orElseThrow(CommentNotFoundException::new);
+        commentRepository.delete(comment);
     }
 }
