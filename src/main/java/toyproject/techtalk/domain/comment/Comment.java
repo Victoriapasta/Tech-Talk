@@ -9,6 +9,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import toyproject.techtalk.domain.board.Board;
 import toyproject.techtalk.domain.user.User;
+import toyproject.techtalk.dto.commentdto.CommentRequestDto;
 
 import java.time.LocalDateTime;
 
@@ -38,4 +39,8 @@ public class Comment {
     private String content;
 
     private LocalDateTime createdTime;
+
+    public void updateComment(CommentRequestDto commentRequestDto) {
+        this.content = commentRequestDto.getContent();
+    }
 }
