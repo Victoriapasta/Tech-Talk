@@ -20,8 +20,8 @@ public class BoardController {
     private final UserService userService;
 
     @PostMapping
-    public ResponseEntity post(@Valid @RequestBody BoardRequestDto boardRequestDto) {
-        boardService.post(boardRequestDto);
+    public ResponseEntity postBoard(@Valid @RequestBody BoardRequestDto boardRequestDto) {
+        boardService.postBoard(boardRequestDto);
         return new ResponseEntity(HttpStatus.OK);
     }
 

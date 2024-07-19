@@ -24,7 +24,7 @@ public class BoardService {
     private final UserRepository userRepository;
 
     @Transactional
-    public void post(BoardRequestDto boardRequestDto) {
+    public void postBoard(BoardRequestDto boardRequestDto) {
         User user = userRepository.findById(boardRequestDto.getUserId())
                 .orElseThrow(UserNotFoundException::new);
         Board board = Board.builder()
