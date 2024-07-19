@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import toyproject.techtalk.domain.board.Board;
 import toyproject.techtalk.domain.user.User;
 
@@ -24,10 +26,12 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "BOARD_ID")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Board board;
 
     @ManyToOne
     @JoinColumn(name = "USER_ID")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
     @Column(nullable = false)
