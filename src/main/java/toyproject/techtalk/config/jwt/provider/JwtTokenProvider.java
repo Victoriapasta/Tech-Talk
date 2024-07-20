@@ -6,10 +6,14 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
+import toyproject.techtalk.config.details.CustomUserDetails;
 import toyproject.techtalk.token.JwtToken;
 import toyproject.techtalk.utils.exception.security.NotFoundAuthFromToken;
 
@@ -78,6 +82,13 @@ public class JwtTokenProvider {
                 .map(auth -> new SimpleGrantedAuthority(auth))
                 .collect(Collectors.toList());
 
+        CustomUserDetails principal = new CustomUserDetails(
+                (String) claims.get("id"),
+                (String) claims.get("email"),
+                null,
+                grantedAuthorities
+                );
 
+        return new UsernamePasswordAuthenticationToken(principal, accessToken, grantedAuthorities);
     }
 }
