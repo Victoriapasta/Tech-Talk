@@ -2,9 +2,12 @@ package toyproject.techtalk.config.jwt.provider;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.UnsupportedJwtException;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.SecurityException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,6 +19,7 @@ import org.springframework.stereotype.Component;
 import toyproject.techtalk.config.details.CustomUserDetails;
 import toyproject.techtalk.token.JwtToken;
 import toyproject.techtalk.utils.exception.security.NotFoundAuthFromToken;
+import toyproject.techtalk.utils.exception.security.ValidateTokenException;
 
 import java.security.Key;
 import java.util.Arrays;
@@ -90,5 +94,21 @@ public class JwtTokenProvider {
                 );
 
         return new UsernamePasswordAuthenticationToken(principal, accessToken, grantedAuthorities);
+    }
+
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parserBuilder()
+                    .setSigningKey(key)
+                    .build()
+                    .parseClaimsJws(token);
+            return true;
+        } catch (SecurityException | MalformedJwtException exception) {
+            throw new ValidateTokenException();
+        } catch (UnsupportedJwtException e) {
+            throw new ValidateTokenException();
+        } catch (IllegalArgumentException e) {
+            throw new ValidateTokenException();
+        }
     }
 }
