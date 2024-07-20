@@ -18,7 +18,7 @@ public class UserController {
     private final SignService signService;
 
     @GetMapping
-    public ResponseEntity<PagedUserDto> getAllUsers(@RequestParam(value = "page", defaultValue = "0"), int page) {
+    public ResponseEntity<PagedUserDto> getAllUsers(@RequestParam(value = "page", defaultValue = "0") int page) {
         PagedUserDto pagedUserDto = userService.getAllUsers(page);
         return new ResponseEntity(pagedUserDto, HttpStatus.OK);
     }
