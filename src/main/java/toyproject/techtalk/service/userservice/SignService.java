@@ -24,6 +24,4 @@ public class SignService {
                 .build();
         userRepository.save(user);
     }
-
-
 }
