@@ -20,7 +20,7 @@ public class CommentRequestDto {
         return new CommentRequestDto(
                 comment.getId(),
                 comment.getBoard().getId(),
-                comment.getUser().getId(),
+                comment.getMember().getId(),
                 comment.getContent(),
                 comment.getCreatedTime());
     }

@@ -1,4 +1,4 @@
-package toyproject.techtalk.controller.usercontroller;
+package toyproject.techtalk.controller.membercontroller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import toyproject.techtalk.dto.userdto.UserRequestDto;
-import toyproject.techtalk.service.userservice.SignService;
-import toyproject.techtalk.service.userservice.UserService;
+import toyproject.techtalk.dto.memberdto.MemberRequestDto;
+import toyproject.techtalk.service.memberservice.SignService;
+import toyproject.techtalk.service.memberservice.MemberService;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,11 +18,11 @@ import toyproject.techtalk.service.userservice.UserService;
 public class SignController {
 
     private final SignService signService;
-    private final UserService userService;
+    private final MemberService memberService;
 
     @PostMapping
-    public ResponseEntity signUp(@Valid @RequestBody UserRequestDto userRequestDto) {
-        signService.signUp(userRequestDto);
+    public ResponseEntity signUp(@Valid @RequestBody MemberRequestDto memberRequestDto) {
+        signService.signUp(memberRequestDto);
         return new ResponseEntity(HttpStatus.OK);
     }
 }

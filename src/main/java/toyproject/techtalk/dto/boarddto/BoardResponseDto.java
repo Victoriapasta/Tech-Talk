@@ -23,7 +23,7 @@ public class BoardResponseDto {
                 board.getId(),
                 board.getTitle(),
                 board.getContent(),
-                board.getUser().getId(),
+                board.getMember().getId(),
                 board.getCreatedTime());
     }
 

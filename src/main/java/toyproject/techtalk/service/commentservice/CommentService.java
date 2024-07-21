@@ -8,7 +8,7 @@ import toyproject.techtalk.dto.commentdto.CommentRequestDto;
 import toyproject.techtalk.dto.commentdto.CommentResponseDto;
 import toyproject.techtalk.repository.BoardRepository;
 import toyproject.techtalk.repository.CommentRepository;
-import toyproject.techtalk.repository.UserRepository;
+import toyproject.techtalk.repository.MemberRepository;
 import toyproject.techtalk.utils.exception.comment.CommentNotFoundException;
 
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CommentService {
 
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
     private final BoardRepository boardRepository;
     private final CommentRepository commentRepository;
 

@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import toyproject.techtalk.domain.user.User;
+import toyproject.techtalk.domain.member.Member;
 import toyproject.techtalk.dto.boarddto.BoardRequestDto;
 
 import java.time.LocalDateTime;
@@ -33,7 +33,7 @@ public class Board {
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private User user;
+    private Member member;
 
     private LocalDateTime createdTime;
 

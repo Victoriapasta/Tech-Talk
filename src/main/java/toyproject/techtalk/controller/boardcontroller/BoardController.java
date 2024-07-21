@@ -6,10 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import toyproject.techtalk.dto.boarddto.BoardRequestDto;
-import toyproject.techtalk.dto.boarddto.BoardResponseDto;
 import toyproject.techtalk.dto.boarddto.PagedBoardDto;
 import toyproject.techtalk.service.boardservice.BoardService;
-import toyproject.techtalk.service.userservice.UserService;
+import toyproject.techtalk.service.memberservice.MemberService;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,7 +16,7 @@ import toyproject.techtalk.service.userservice.UserService;
 public class BoardController {
 
     private final BoardService boardService;
-    private final UserService userService;
+    private final MemberService memberService;
 
     @PostMapping
     public ResponseEntity postBoard(@Valid @RequestBody BoardRequestDto boardRequestDto) {

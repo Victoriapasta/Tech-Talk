@@ -1,15 +1,15 @@
-package toyproject.techtalk.dto.userdto;
+package toyproject.techtalk.dto.memberdto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import toyproject.techtalk.domain.tech.Tech;
-import toyproject.techtalk.domain.user.User;
+import toyproject.techtalk.domain.member.Member;
 
 @Getter
 @AllArgsConstructor
-public class UserRequestDto {
+public class MemberRequestDto {
 
     private Long id;
     @Email(message = "이메일 형식을 맞춰주세요.")
@@ -19,12 +19,12 @@ public class UserRequestDto {
     private String nickName;
     private Tech interest;
 
-    public UserRequestDto toDto(User user) {
-        return new UserRequestDto(
-                user.getId(),
-                user.getEmail(),
-                user.getPassword(),
-                user.getNickname(),
-                user.getInterest());
+    public MemberRequestDto toDto(Member member) {
+        return new MemberRequestDto(
+                member.getId(),
+                member.getEmail(),
+                member.getPassword(),
+                member.getNickname(),
+                member.getInterest());
     }
 }

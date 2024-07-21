@@ -3,9 +3,9 @@ package toyproject.techtalk.repository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import toyproject.techtalk.domain.user.User;
+import toyproject.techtalk.domain.member.Member;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface MemberRepository extends JpaRepository<Member, Long> {
 
-    Page<User> findALl(Pageable pageable);
+    Page<Member> findALl(Pageable pageable);
 }

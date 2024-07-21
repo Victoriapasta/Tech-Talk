@@ -6,14 +6,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import toyproject.techtalk.domain.board.Board;
-import toyproject.techtalk.domain.user.User;
+import toyproject.techtalk.domain.member.Member;
 import toyproject.techtalk.dto.boarddto.BoardRequestDto;
 import toyproject.techtalk.dto.boarddto.BoardResponseDto;
 import toyproject.techtalk.dto.boarddto.PagedBoardDto;
 import toyproject.techtalk.repository.BoardRepository;
-import toyproject.techtalk.repository.UserRepository;
+import toyproject.techtalk.repository.MemberRepository;
 import toyproject.techtalk.utils.exception.board.BoardNotFoundException;
-import toyproject.techtalk.utils.exception.user.UserNotFoundException;
+import toyproject.techtalk.utils.exception.member.MemberNotFoundException;
 
 @Service
 @Transactional(readOnly = true)
@@ -21,16 +21,16 @@ import toyproject.techtalk.utils.exception.user.UserNotFoundException;
 public class BoardService {
 
     private final BoardRepository boardRepository;
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
 
     @Transactional
     public void postBoard(BoardRequestDto boardRequestDto) {
-        User user = userRepository.findById(boardRequestDto.getUserId())
-                .orElseThrow(UserNotFoundException::new);
+        Member member = memberRepository.findById(boardRequestDto.getUserId())
+                .orElseThrow(MemberNotFoundException::new);
         Board board = Board.builder()
                 .title(boardRequestDto.getTitle())
                 .content(boardRequestDto.getContent())
-                .user(user)
+                .member(member)
                 .build();
 
         boardRepository.save(board);

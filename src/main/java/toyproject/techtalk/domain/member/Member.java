@@ -1,4 +1,4 @@
-package toyproject.techtalk.domain.user;
+package toyproject.techtalk.domain.member;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -17,11 +17,11 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "USER_ID")
+    @Column(name = "Member_ID")
     private Long id;
 
     @Column(nullable = false)
@@ -35,9 +35,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Tech interest;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "member")
     private List<Board> boards = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "member")
     private List<Comment> comments = new ArrayList<>();
 }

@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import toyproject.techtalk.domain.board.Board;
-import toyproject.techtalk.domain.user.User;
+import toyproject.techtalk.domain.member.Member;
 import toyproject.techtalk.dto.commentdto.CommentRequestDto;
 
 import java.time.LocalDateTime;
@@ -33,7 +33,7 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private User user;
+    private Member member;
 
     @Column(nullable = false)
     private String content;
