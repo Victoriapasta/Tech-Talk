@@ -17,7 +17,7 @@ public class MemberService {
 
     public PagedMemberDto getAllMembers(Integer page) {
         Pageable pageable = PageRequest.of(page, 10);
-        PagedMemberDto pagedMemberDto = PagedMemberDto.toDto(memberRepository.findALl(pageable));
+        PagedMemberDto pagedMemberDto = PagedMemberDto.toDto(memberRepository.findAll(pageable));
         return pagedMemberDto;
     }
 }

@@ -10,7 +10,7 @@ import toyproject.techtalk.service.memberservice.MemberService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/user")
+@RequestMapping("/member")
 public class MemberController {
 
     private final MemberService memberService;
