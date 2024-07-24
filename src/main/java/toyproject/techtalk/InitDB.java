@@ -33,6 +33,7 @@ public class InitDB {
                         .email("test@naver.com")
                         .password(passwordEncoder.encode("test123!"))
                         .interest(Tech.JAVA)
+                        .nickname("히데")
                 .build());
     }
 
