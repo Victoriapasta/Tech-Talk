@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import toyproject.techtalk.dto.memberdto.MemberRequestDto;
+import toyproject.techtalk.dto.memberdto.signdto.SignInRequestDto;
 import toyproject.techtalk.service.memberservice.SignService;
-import toyproject.techtalk.service.memberservice.MemberService;
+import toyproject.techtalk.token.JwtToken;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,11 +19,19 @@ import toyproject.techtalk.service.memberservice.MemberService;
 public class SignController {
 
     private final SignService signService;
-    private final MemberService memberService;
 
-    @PostMapping
+    @PostMapping("/sign-up")
     public ResponseEntity signUp(@Valid @RequestBody MemberRequestDto memberRequestDto) {
         signService.signUp(memberRequestDto);
-        return new ResponseEntity(HttpStatus.OK);
+        return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+    @PostMapping("/sign-in")
+    public JwtToken signIn(@Valid @RequestBody SignInRequestDto signInRequestDto) {
+        String email = signInRequestDto.getEmail();
+        String password = signInRequestDto.getPassword();
+        JwtToken jwtToken = signService.signIn(email, password);
+
+        return jwtToken;
     }
 }

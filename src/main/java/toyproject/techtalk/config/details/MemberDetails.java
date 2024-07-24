@@ -28,7 +28,7 @@ public class MemberDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return id; //email 로 변경할지 고민해보기
+        return email;
     }
 
     @Override
