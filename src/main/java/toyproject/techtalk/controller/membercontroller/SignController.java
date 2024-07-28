@@ -2,6 +2,7 @@ package toyproject.techtalk.controller.membercontroller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import toyproject.techtalk.token.JwtToken;
 
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 @RequestMapping("/sign")
 public class SignController {
 
@@ -30,6 +32,7 @@ public class SignController {
     public JwtToken signIn(@Valid @RequestBody SignInRequestDto signInRequestDto) {
         String email = signInRequestDto.getEmail();
         String password = signInRequestDto.getPassword();
+
         JwtToken jwtToken = signService.signIn(email, password);
 
         return jwtToken;

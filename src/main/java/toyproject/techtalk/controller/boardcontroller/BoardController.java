@@ -16,7 +16,6 @@ import toyproject.techtalk.service.memberservice.MemberService;
 public class BoardController {
 
     private final BoardService boardService;
-    private final MemberService memberService;
 
     @PostMapping
     public ResponseEntity postBoard(@Valid @RequestBody BoardRequestDto boardRequestDto) {

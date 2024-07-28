@@ -43,7 +43,7 @@ public class JwtTokenProvider {
     public JwtToken generateToken(Authentication authentication) {
         String authorities = authentication.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
-                .collect(Collectors.joining("."));
+                .collect(Collectors.joining(","));
 
         long now = (new Date()).getTime();
 
@@ -85,7 +85,7 @@ public class JwtTokenProvider {
                 .collect(Collectors.toList());
 
         MemberDetails principal = new MemberDetails(
-                (String) claims.get("id"),
+                (Long) claims.get("id"),
                 (String) claims.get("email"),
                 null,
                 grantedAuthorities

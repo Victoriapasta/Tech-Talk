@@ -11,7 +11,7 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public class MemberDetails implements UserDetails {
 
-    private final String id; //PK
+    private final Long id; //PK
     private final String email;
     private final String password;
     private final Collection<? extends GrantedAuthority> authorities;

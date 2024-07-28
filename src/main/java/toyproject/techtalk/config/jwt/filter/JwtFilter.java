@@ -6,6 +6,7 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
@@ -15,11 +16,11 @@ import toyproject.techtalk.config.jwt.provider.JwtTokenProvider;
 import java.io.IOException;
 
 @RequiredArgsConstructor
+@Slf4j
 public class JwtFilter extends GenericFilterBean {
 
     private static final String AUTH_HEADER = "Authorization";
     private static final String BEARER = "Bearer";
-    private static final String REFRESH_HEADER = "Auth";
 
     private final JwtTokenProvider jwtTokenProvider;
 
@@ -27,17 +28,26 @@ public class JwtFilter extends GenericFilterBean {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         String token = resolveToken((HttpServletRequest) request);
 
+        if (((HttpServletRequest) request).getRequestURI().startsWith("/sign")) {
+            chain.doFilter(request, response);
+            return;
+        }
+
         if (token != null && jwtTokenProvider.validateToken(token)) {
             Authentication authentication = jwtTokenProvider.getAuthenticationFromToken(token);
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
+
         chain.doFilter(request, response);
     }
 
     private String resolveToken(HttpServletRequest request) {
         String bearerToken = request.getHeader(AUTH_HEADER);
-        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(BEARER)) {
-            return bearerToken.substring(7);
+
+        log.info("beaerToken =" + bearerToken);
+
+        if (StringUtils.hasText(bearerToken)) {
+            return bearerToken;
         }
         return null;
     }

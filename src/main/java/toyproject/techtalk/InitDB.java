@@ -43,7 +43,7 @@ public class InitDB {
 
         boardRepository.save(Board.builder()
                         .title("testTitle")
-                        .content("whssk djfuqsp Tlqkf")
+                        .content("asdfasdfasdfsadf")
                         .member(member)
                 .build());
     }
