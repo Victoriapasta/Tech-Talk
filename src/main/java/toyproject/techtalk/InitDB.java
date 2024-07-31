@@ -12,6 +12,8 @@ import toyproject.techtalk.domain.tech.Tech;
 import toyproject.techtalk.repository.BoardRepository;
 import toyproject.techtalk.repository.MemberRepository;
 
+import java.time.LocalDateTime;
+
 @Component
 @RequiredArgsConstructor
 public class InitDB {
@@ -45,6 +47,7 @@ public class InitDB {
                 .title("testTitle")
                 .content("asdfasdfasdfsadf")
                 .member(member)
+                .createdTime(LocalDateTime.now())
                 .build());
     }
 }

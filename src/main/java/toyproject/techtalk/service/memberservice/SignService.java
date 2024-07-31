@@ -41,8 +41,6 @@ public class SignService {
         memberRepository.findByEmail(email)
                 .orElseThrow(MemberNotFoundException::new);
 
-        System.out.println(email + " " + password);
-
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(email, password);
 
         Authentication authentication = authenticationManagerBuilder.getObject()
@@ -51,8 +49,6 @@ public class SignService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         JwtToken jwtToken = jwtTokenProvider.generateToken(authentication);
-
-        log.info("Token Return {}", jwtToken.getAccessToken());
 
         return jwtToken;
     }

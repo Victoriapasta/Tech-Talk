@@ -20,7 +20,6 @@ import java.io.IOException;
 public class JwtFilter extends GenericFilterBean {
 
     private static final String AUTH_HEADER = "Authorization";
-    private static final String BEARER = "Bearer";
 
     private final JwtTokenProvider jwtTokenProvider;
 
@@ -43,8 +42,6 @@ public class JwtFilter extends GenericFilterBean {
 
     private String resolveToken(HttpServletRequest request) {
         String bearerToken = request.getHeader(AUTH_HEADER);
-
-        log.info("beaerToken =" + bearerToken);
 
         if (StringUtils.hasText(bearerToken)) {
             return bearerToken;

@@ -20,6 +20,8 @@ import toyproject.techtalk.utils.exception.security.NotFoundAuthFromToken;
 import toyproject.techtalk.utils.exception.security.ValidateTokenException;
 
 import java.security.Key;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
@@ -45,18 +47,18 @@ public class JwtTokenProvider {
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.joining(","));
 
-        long now = (new Date()).getTime();
+        Instant issue = Instant.now().truncatedTo(ChronoUnit.SECONDS);
+        Instant expiration = issue.plus(tokenValiditySecond, ChronoUnit.DAYS);
 
-        Date accessTokenExpiration = new Date(now + tokenValiditySecond);
         String accessToken = Jwts.builder()
                 .setSubject(authentication.getName())
                 .claim(AUTH_KEY, authorities)
-                .setExpiration(accessTokenExpiration)
+                .setExpiration(Date.from(issue))
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
 
         String refreshToken = Jwts.builder()
-                .setExpiration(new Date(now + tokenValiditySecond))
+                .setExpiration(Date.from(expiration))
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
 
@@ -89,7 +91,7 @@ public class JwtTokenProvider {
                 (String) claims.get("email"),
                 null,
                 grantedAuthorities
-                );
+        );
 
         return new UsernamePasswordAuthenticationToken(principal, accessToken, grantedAuthorities);
     }
