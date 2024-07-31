@@ -46,6 +46,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/sign/**").permitAll()
                         .requestMatchers("/error").permitAll()
+                        .requestMatchers("/board/**").permitAll()
                         .anyRequest().permitAll())
 
                 .userDetailsService(memberDetailsService)

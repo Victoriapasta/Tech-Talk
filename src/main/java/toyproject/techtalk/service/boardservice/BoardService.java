@@ -42,6 +42,7 @@ public class BoardService {
         return pagedBoardDto;
     }
 
+    @Transactional
     public BoardResponseDto updateBoard(Long id, BoardRequestDto boardRequestDto) {
         Board board = boardRepository.findById(id)
                 .orElseThrow(BoardNotFoundException::new);
@@ -49,6 +50,7 @@ public class BoardService {
         return BoardResponseDto.toDto(board);
     }
 
+    @Transactional
     public void deleteBoard(Long id) {
         Board board = boardRepository.findById(id).orElseThrow(BoardNotFoundException::new);
         boardRepository.delete(board);

@@ -24,16 +24,16 @@ public class InitDB {
     @Transactional
     public void initDB() {
         initMembers();
-//        initBoards();
+        initBoards();
     }
 
     @Transactional
     public void initMembers() {
         memberRepository.save(Member.builder()
-                        .email("test@naver.com")
-                        .password(passwordEncoder.encode("test123!"))
-                        .interest(Tech.JAVA)
-                        .nickname("히데")
+                .email("test@naver.com")
+                .password(passwordEncoder.encode("test123!"))
+                .interest(Tech.JAVA)
+                .nickname("히데")
                 .build());
     }
 
@@ -42,9 +42,9 @@ public class InitDB {
         Member member = memberRepository.findAll().get(0);
 
         boardRepository.save(Board.builder()
-                        .title("testTitle")
-                        .content("asdfasdfasdfsadf")
-                        .member(member)
+                .title("testTitle")
+                .content("asdfasdfasdfsadf")
+                .member(member)
                 .build());
     }
 }
